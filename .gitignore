@@ -1,0 +1,18 @@
+# Ignore SSH keys
+*.pem
+inventory.ini
+
+
+# Ignore log files
+*.log
+
+# Ignore editor/temp files
+*.swp
+*.swo
+*.bak
+*.tmp
+*.DS_Store
+
+# Python cache (if you ever use Python modules)
+__pycache__/
+*.pyc

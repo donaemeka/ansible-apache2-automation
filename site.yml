@@ -1,0 +1,47 @@
+- name: Configure Apache2 on Ubuntu with Jinja2
+  hosts: webserver_aws
+  become: yes
+  vars:
+    server_name: "ec2-54-xyz-aws.compute.amazonaws.com"
+    environment: "dev"
+    document_root: "/var/www/html"
+
+  tasks:
+    - name: Install Apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: Ensure required modules are enabled
+      command: "a2enmod {{ item }}"
+      with_items:
+        - mpm_event
+        - authz_core
+      notify: Restart Apache2
+
+    - name: Deploy custom Apache2 config
+      template:
+        src: templates/apache2.conf.j2
+        dest: /etc/apache2/sites-available/000-custom.conf
+      notify: Restart Apache2
+
+    - name: Enable custom site
+      command: a2ensite 000-custom
+      notify: Restart Apache2
+
+    - name: Check if default site exists
+      stat:
+        path: /etc/apache2/sites-enabled/000-default.conf
+      register: default_site
+
+    - name: Disable default site
+      command: a2dissite 000-default
+      when: default_site.stat.exists
+      notify: Restart Apache2
+
+  handlers:
+    - name: Restart Apache2
+      service:
+        name: apache2
+        state: restarted

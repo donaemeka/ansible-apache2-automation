@@ -1,0 +1,16 @@
+# apache2.conf.j2 - Corrected Version
+<VirtualHost *:80>
+    ServerName {{ server_name }}
+    
+    # Environment-based custom logging
+    ErrorLog /var/log/apache2/{{ environment }}_error.log
+    CustomLog /var/log/apache2/{{ environment }}_access.log combined
+    
+    DocumentRoot {{ document_root }}
+    
+    <Directory "{{ document_root }}">
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+    </Directory>
+</VirtualHost>
