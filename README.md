@@ -56,9 +56,9 @@ This ensures each environment has its own log files and configuration.
 
 ## Usage
 
-- Clone the repository: git clone git@github.com:yourusername/ansible-jinja2-demo.git
+- Clone the repository: https://github.com/donaemeka/ansible-apache2-automation.git
 
-cd ansible-jinja2-demo
+cd ansible-apache2-automation
 
 
 - Update inventory.ini with your server details:
@@ -116,3 +116,4 @@ This project is part of my portfolio to showcase my skills in:
 - Jinja2 templating for dynamic configurations
 
 - Managing Apache2 sites and logs on Ubuntu servers
+
