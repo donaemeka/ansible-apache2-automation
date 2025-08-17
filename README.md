@@ -18,7 +18,7 @@ This project automates the installation and configuration of Apache2 on Ubuntu s
 
 ## Project Structure
 
-ansible-jinja2-demo/
+ansible-apache2-automation/
 
 ├── inventory.ini             # Target servers and SSH details
 
@@ -116,4 +116,5 @@ This project is part of my portfolio to showcase my skills in:
 - Jinja2 templating for dynamic configurations
 
 - Managing Apache2 sites and logs on Ubuntu servers
+
 
